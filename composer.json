@@ -1,0 +1,16 @@
+{
+    "name": "novactive/ezopenid",
+    "type": "ezpublish-legacy-extension",
+    "description": "OpenID integration",
+    "license": "OSL-3",
+    "authors": [
+        {
+            "name": "Novactive",
+            "email": "contact@novactive.com"
+        }
+    ],
+    "require": {
+        "ezsystems/ezpublish-legacy-installer": "~2.0",
+        "lightopenid/lightopenid": "~0.7"
+    }
+}
