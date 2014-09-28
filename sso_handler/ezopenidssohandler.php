@@ -104,7 +104,7 @@ class eZOpenIDSSOHandler
      */
     protected function _createUser( LightOpenID $openIdConsumer )
     {
-        $attributeMapping = $this->_openidIni->variable( 'OpenIDSettings', 'AttributeMapping' );
+        $attributeMapping = $this->_openidIni->variable( 'OpenIDSettings', 'AttributesMapping' );
         $login            = array_pop( explode( '/', $openIdConsumer->data['openid_identity'] ) );
         $email            = $openIdConsumer->data['openid_ext1_value_contact_email'];
         foreach ( $attributeMapping as $ezIdentifier => $openIdIdentifier )
@@ -139,8 +139,8 @@ class eZOpenIDSSOHandler
      */
     protected function _updateUser( $currentUser, LightOpenID $openIdConsumer )
     {
-        $attributeMapping = $this->_openidIni->variable( 'OpenIDSettings', 'AttributeMapping' );
-        $email            = $openIdConsumer->data['openid_ext1_value_openid_email'];
+        $attributeMapping = $this->_openidIni->variable( 'OpenIDSettings', 'AttributesMapping' );
+        $email            = $openIdConsumer->data['openid_ext1_value_contact_email'];
         foreach ( $attributeMapping as $ezIdentifier => $openIdIdentifier )
         {
             $userAttributes[$ezIdentifier]['value'] = $openIdConsumer->data['openid_ext1_value_' . $openIdIdentifier];
