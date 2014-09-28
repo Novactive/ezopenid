@@ -65,20 +65,31 @@ class eZOpenIDSSOHandler
             $loginIdentity  = array_pop( $aLoginIdentity );
 
             // Retrieve the local user, with the login provided by CAS
-            $user = eZUser::fetchByName( $loginIdentity );
-            if ( !$user )
+            $user                = eZUser::fetchByName( $loginIdentity );
+            $createUserIfMissing = $this->_openidIni->variable( 'OpenIDSettings', 'CreateUserIfMissing' );
+            if ( !$user && $createUserIfMissing != 'false' )
             {
                 // Create the user
                 $user = $this->_createUser( $openIDConsumer );
             }
             else
             {
-                // Check if the user information should be updated
-                $this->_updateUser( $user, $openIDConsumer );
+                if ( $user )
+                {
+                    // Check if the user information should be updated
+                    $this->_updateUser( $user, $openIDConsumer );
+                }
             }
-            $userId = $user->attribute( 'contentobject_id' );
-            eZUser::updateLastVisit( $userId );
-            eZUser::setFailedLoginAttempts( $userId, 0 );
+            if ( $user )
+            {
+                $userId = $user->attribute( 'contentobject_id' );
+                eZUser::updateLastVisit( $userId );
+                eZUser::setFailedLoginAttempts( $userId, 0 );
+            }
+            else
+            {
+                $user = false;
+            }
         }
 
         return $user;
