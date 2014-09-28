@@ -86,9 +86,10 @@ class eZOpenIDOperators
     {
         $openidIni                 = eZINI::instance( 'ezopenid.ini' );
         $serverUrl                 = $openidIni->variable( 'OpenIDSettings', 'ServerUrl' );
-        $openIDConsumer            = new LightOpenID( $serverUrl );
-        $openIDConsumer->returnUrl = eZURI::transformURI( eZSys::requestURI(), false, 'full' );
-        $openIDConsumer->required  = array( 'Email', 'FirstName', 'LastName' );
+        $returnUrl                 = eZSys::serverURL() . eZSys::requestURI();
+        $openIDConsumer            = new LightOpenID( eZSys::hostname() );
+        $openIDConsumer->returnUrl = $returnUrl;
+        $openIDConsumer->required  = array( 'contact/email', 'namePerson/first', 'namePerson/last' );
         $openIDConsumer->identity  = $serverUrl;
         $operatorValue             = $openIDConsumer->authUrl();
 

@@ -47,9 +47,16 @@ class eZOpenIDSSOHandler
      */
     public function handleSSOLogin()
     {
-        $user                      = false;
-        $openIDConsumer            = new LightOpenID( $this->_openidIni->variable( 'OpenIDSettings', 'ServerUrl' ) );
-        $openIDConsumer->returnUrl = eZURI::transformURI( eZSys::requestURI(), false, 'full' );
+        $user           = false;
+        $returnUrl      = eZSys::serverURL() . eZSys::requestURI();
+        $openIDConsumer = new LightOpenID( eZSys::hostname() );
+        $required       = array( 'contact/email' );
+        foreach ( $this->_openidIni->variable( 'OpenIDSettings', 'AttributesMapping' ) as $identifier )
+        {
+            $required[] = preg_replace( '/_/', "/", $identifier );
+        }
+        $openIDConsumer->required  = $required;
+        $openIDConsumer->returnUrl = $returnUrl;
         $openIDConsumer->data      = $_GET;
 
         if ( $openIDConsumer->validate() )
