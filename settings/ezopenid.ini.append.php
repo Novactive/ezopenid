@@ -5,6 +5,7 @@
 Debug=disabled
 ServerUrl=
 LogoutUri=
+CreateUserIfMissing=true
 # Mapping between eZ publish attributes and CAS ones for user information
 AttributesMapping[]
 AttributesMapping[first_name]=namePerson_first
