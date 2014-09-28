@@ -72,13 +72,10 @@ class eZOpenIDSSOHandler
                 // Create the user
                 $user = $this->_createUser( $openIDConsumer );
             }
-            else
+            else if ( $user )
             {
-                if ( $user )
-                {
-                    // Check if the user information should be updated
-                    $this->_updateUser( $user, $openIDConsumer );
-                }
+                // Check if the user information should be updated
+                $this->_updateUser( $user, $openIDConsumer );
             }
             if ( $user )
             {
