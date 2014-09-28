@@ -13,5 +13,5 @@ $eZTemplateOperatorArray = array();
 
 $eZTemplateOperatorArray[] = array(
     'class' => 'eZOpenIDOperators',
-    'operator_names' => array( 'link_openid' )
+    'operator_names' => array( 'openid_login_url' )
 );

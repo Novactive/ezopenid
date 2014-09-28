@@ -71,7 +71,7 @@
                         <div class="login-text-wrapper">
                             {'or'|i18n( 'design/admin/user/login')}
                             <br/>
-                            <a href={link_openid()}>
+                            <a href={openid_login_url()}>
                                 <img src={'logo_openId.png'|ezimage} width="100"/>
                             </a>
                         </div>

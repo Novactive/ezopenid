@@ -34,7 +34,7 @@ class eZOpenIDOperators
      */
     function operatorList()
     {
-        return array( 'link_openid' );
+        return array( 'openid_login_url' );
     }
 
     /**
@@ -69,9 +69,9 @@ class eZOpenIDOperators
     ) {
         switch ( $operatorName )
         {
-            case 'link_openid':
+            case 'openid_login_url':
             {
-                $operatorValue = $this->getOpenIDLink();
+                $operatorValue = $this->getOpenIDLoginUrl();
             }
                 break;
         }
@@ -82,7 +82,7 @@ class eZOpenIDOperators
      *
      * @return string
      */
-    protected function getOpenIDLink()
+    protected function getOpenIDLoginUrl()
     {
         $openidIni                 = eZINI::instance( 'ezopenid.ini' );
         $serverUrl                 = $openidIni->variable( 'OpenIDSettings', 'ServerUrl' );
