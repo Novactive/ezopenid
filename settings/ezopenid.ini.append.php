@@ -8,8 +8,8 @@ LogoutUri=
 CreateUserIfMissing=true
 # Mapping between eZ publish attributes and CAS ones for user information
 AttributesMapping[]
-AttributesMapping[first_name]=namePerson_first
-AttributesMapping[last_name]=namePerson_last
+AttributesMapping[firstname]=namePerson_first
+AttributesMapping[lastname]=namePerson_last
 # Group IDs where the user should be added at creation
 GroupAssignments[]
 GroupAssignments[]=12
